@@ -37,7 +37,7 @@ function createServer() {
       const base64 = response.data?.[0]?.b64_json ?? "";
 
       return {
-        content: [{ type: "image", data: base64, mimeType: "image/png" }],
+        content: [{ type: "text", text: `IMAGE_BASE64:${base64}` }],
       };
     }
   );
