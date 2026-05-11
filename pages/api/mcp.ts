@@ -46,12 +46,6 @@ function createServer() {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const clientKey = String(req.headers["x-api-key"] ?? "").trim();
-  if (clientKey !== (process.env.MCP_ACCESS_KEY ?? "").trim()) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
   const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
   const server = createServer();
   await server.connect(transport);
